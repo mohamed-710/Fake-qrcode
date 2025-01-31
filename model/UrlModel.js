@@ -8,12 +8,12 @@ const UrlSchema = new mongoose.Schema({
   fakeUrl: {
     type: String,
     required: true,
-    unique: true
+ 
   },
   fakePath: {
     type: String,
     required: true,
-    unique: true
+   
   },
   qrCodePath: {
     type: String,
