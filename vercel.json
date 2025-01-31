@@ -4,10 +4,8 @@
       {
         "src": "./server.js",
         "use": "@vercel/node",
-        "config": {
+     
           "includeFiles": ["dist/**"]
-        },
-        "maxDuration": 10
       },
       {
         "src": "dist/**",
