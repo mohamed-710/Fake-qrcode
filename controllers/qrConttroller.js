@@ -20,7 +20,7 @@ const generateQrCode = async (req, res) => {
     return res.status(400).json({ message: "Original URL and Fake Path are required" });
   }
 
-  try {
+  try { 
     // Generate the fake URL
     const fakeUrl = `${req.protocol}://${req.get("host")}/${fakePath}`;
 
