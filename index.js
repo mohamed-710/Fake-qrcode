@@ -1,26 +1,45 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const connectDB = require("./config/configdb");
+import express from 'express';
 
-const qrRoutes = require("./routes/qrRoutes");
+import dotenv from 'dotenv';
+
+import connectDB from './config/DB.js';
+
+import authRoutes from './routes/authRoute.js'
+
+import errorHandler from './middleware/errorHandler.js';
+
+import bankRoutes from "./routes/bankRoutes.js";
+
+import cookieParser from 'cookie-parser';
+
+import userRoute from "./routes/userRoute.js"
+
+import cors from 'cors';
 
 dotenv.config();
 
+
 const app = express();
+
 app.use(express.json());
 
+app.use(cookieParser()); 
 
-const cloudinary = require("./config/cloudinary");
+app.use(cors({
+  origin: "*", 
+  credentials: false, 
+}));
+app.use("/api/auth", authRoutes);
+
+app.use("/api/bank", bankRoutes);
+
+app.use("/api/Manage", userRoute);
+
+
+app.use(errorHandler);
 
 
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
-
-
-app.use("/", qrRoutes);
 
 const PORT = process.env.PORT || 3000;
 
